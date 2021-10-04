@@ -30,7 +30,6 @@ async def on_ready():
     print("Intents:")
     for intent in bot.intents:
         intent: bool = intent
-        print(intent)
 
     print("Bot is ready!")
     print("User ->", bot.user)
@@ -45,7 +44,6 @@ async def on_ready():
 
 @bot.event
 async def on_reaction_add(reaction: Reaction, user: User):
-    print("test")
     message: Message = reaction.message
     author: User = message.author
     isBot: bool = author.bot
