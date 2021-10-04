@@ -37,31 +37,32 @@ async def on_ready():
     start = True
     currentTime = time.time().real * 1000
     textChannel: TextChannel = await bot.fetch_channel(channelId)
-    #thread = threading.Thread(target=await update(textChannel, commandPrefix))
-    #thread.run()
+    # thread = threading.Thread(target=await update(textChannel, commandPrefix))
+    # thread.run()
 
     # threading.Thread(target=await check(currentTime, channel, start)).start() <- infinite loop problem
 
-    @bot.event
-    async def on_reaction_add(reaction: Reaction, user: User):
-        print("test")
-        message: Message = reaction.message
-        author: User = message.author
-        isBot: bool = author.bot
-        reactions: list(Reaction) = message.reactions
-        if isBot:
-            print(len(reactions))
-            if len(reactions) == 3:
-                await message.add_reaction(reactions[2])
-                print("Reaction added")
 
-    @bot.command()
-    async def info(ctx: discord.ext.commands.Context):
-        embed = discord.Embed(title="Karuta Destroyer", description="Version: 1.0.0\nDeveloper: Kroko", color=0x34a8eb)
-        textChannel: TextChannel = ctx.channel
-        await textChannel.send(embed=embed)
-        commandMessage: Message = ctx.message
-        await commandMessage.delete()
+@bot.event
+async def on_reaction_add(reaction: Reaction, user: User):
+    print("test")
+    message: Message = reaction.message
+    author: User = message.author
+    isBot: bool = author.bot
+    reactions: list(Reaction) = message.reactions
+    if isBot:
+        if len(reactions) == 3 and str(reaction.emoji) == '3️⃣':
+            await message.add_reaction(reactions[2])
+            print("Reaction added")
+
+
+@bot.command()
+async def info(ctx: discord.ext.commands.Context):
+    embed = discord.Embed(title="Karuta Destroyer", description="Version: 1.0.0\nDeveloper: Kroko", color=0x34a8eb)
+    textChannel: TextChannel = ctx.channel
+    await textChannel.send(embed=embed)
+    commandMessage: Message = ctx.message
+    await commandMessage.delete()
 
 
 # ODI0MzM1MzU5OTMyMTA0NzE0.YVoBNA.cxxe0DJ5ipLQ6o7NVjUqYLtu6Uw
