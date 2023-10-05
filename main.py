@@ -63,7 +63,6 @@ async def info(ctx: discord.ext.commands.Context):
     await commandMessage.delete()
 
 
-# ODI0MzM1MzU5OTMyMTA0NzE0.YVoBNA.cxxe0DJ5ipLQ6o7NVjUqYLtu6Uw
 # 878089602659926090
 # 894312131980300334
 token = input("Discord Token:\n")
